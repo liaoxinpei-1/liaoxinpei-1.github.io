@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深度解读：泡泡玛特为何风靡全球？</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The application is designed as a narrative journey to deconstruct Pop Mart's success. It starts with a high-impact hero section stating the core question and key metrics. The central part is an interactive dashboard, "成功秘诀" (Secret to Success), acting as the main navigation hub. Each element on the dashboard links to a detailed "deep-dive" section below. This structure allows users to either follow a linear story or jump to specific topics of interest, making it more engaging and user-friendly than a standard report layout. The flow is: Hero -> Dashboard -> Deep Dive Sections (Business Model, IP, Global Expansion, Culture, Catalyst) -> Financials -> Conclusion. This thematic grouping helps users synthesize complex information logically. -->
+    <!-- Visualization & Content Choices: Data from the report is translated into targeted visualizations. 1) Revenue Growth (Grouped Bar Chart): To compare total vs. overseas revenue growth, showing the scale of international success. 2) IP Strategy (Doughnut Chart): To visually emphasize the dominant role of proprietary artist IPs (81%), a key strategic shift. 3) LABUBU Effect (Line Chart): To illustrate the explosive, time-sensitive trend of a single IP's social media engagement. 4) Product Innovation (Bar Chart): To quantify the significant contribution of the new plush toy category. Textual content is summarized and placed in context, with each section introduced by a paragraph explaining its purpose. All interactions (hovers, clicks) are designed to reveal more detail, encouraging exploration. NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #FDFBF6;
+            color: #4A4A4A;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .stat-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        .pillar-card {
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+        }
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            background-color: #FAF5F0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-[#D8A793]">POP MART</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#success-secrets" class="nav-link text-gray-600 hover:text-[#BF8B7E] border-b-2 border-transparent hover:border-[#BF8B7E]">成功秘诀</a>
+                <a href="#financials" class="nav-link text-gray-600 hover:text-[#BF8B7E] border-b-2 border-transparent hover:border-[#BF8B7E]">业绩亮点</a>
+                <a href="#future" class="nav-link text-gray-600 hover:text-[#BF8B7E] border-b-2 border-transparent hover:border-[#BF8B7E]">未来展望</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-16">
+
+        <section id="hero" class="text-center mb-16 md:mb-24">
+            <h2 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">泡泡玛特为何风靡全球？</h2>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10">从中国走向世界，泡泡玛特正凭借其独特的魅力掀起一场全球潮流玩具革命。我们将深入剖析其近期在海外市场爆发式增长背后的多重驱动力。</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="stat-card bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <p class="text-4xl font-bold text-[#D8A793]">375.2%</p>
+                    <p class="text-gray-500 mt-2">2024年海外营收同比增长</p>
+                </div>
+                <div class="stat-card bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <p class="text-4xl font-bold text-[#D8A793]">100%</p>
+                    <p class="text-gray-500 mt-2">2025年Q1美国市场营收超去年全年</p>
+                </div>
+                <div class="stat-card bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <p class="text-4xl font-bold text-[#D8A793]">>50%</p>
+                    <p class="text-gray-500 mt-2">预计2025年海外营收占比</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="success-secrets" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold mb-3">成功秘诀：揭秘泡泡玛特的增长引擎</h3>
+                <p class="text-gray-600 max-w-2xl mx-auto">泡泡玛特的成功并非偶然，而是一场由商业模式、IP战略、全球扩张和文化共鸣共同掀起的“完美风暴”。点击下方卡片，探索每一个关键因素。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <a href="#section-blindbox" class="pillar-card block bg-white p-8 rounded-2xl shadow-lg text-center cursor-pointer">
+                    <div class="text-5xl mb-4">🎁</div>
+                    <h4 class="text-xl font-bold mb-2">盲盒魔力</h4>
+                    <p class="text-gray-600">利用惊喜、稀缺和心理驱动力，创造无法抗拒的购买体验。</p>
+                </a>
+                <a href="#section-ip" class="pillar-card block bg-white p-8 rounded-2xl shadow-lg text-center cursor-pointer">
+                    <div class="text-5xl mb-4">🎨</div>
+                    <h4 class="text-xl font-bold mb-2">IP宇宙</h4>
+                    <p class="text-gray-600">打造连接情感的角色宇宙，将玩具升华为艺术收藏品。</p>
+                </a>
+                <a href="#section-global" class="pillar-card block bg-white p-8 rounded-2xl shadow-lg text-center cursor-pointer">
+                    <div class="text-5xl mb-4">🌍</div>
+                    <h4 class="text-xl font-bold mb-2">全球版图</h4>
+                    <p class="text-gray-600">从旗舰店到机器人商店，用灵活的本土化策略征服世界。</p>
+                </a>
+                <a href="#section-culture" class="pillar-card block bg-white p-8 rounded-2xl shadow-lg text-center cursor-pointer">
+                    <div class="text-5xl mb-4">❤️</div>
+                    <h4 class="text-xl font-bold mb-2">文化共鸣</h4>
+                    <p class="text-gray-600">精准把握Z世代与“Kidult”经济，满足情感与怀旧需求。</p>
+                </a>
+                <a href="#section-catalyst" class="pillar-card block bg-white p-8 rounded-2xl shadow-lg text-center cursor-pointer">
+                    <div class="text-5xl mb-4">🚀</div>
+                    <h4 class="text-xl font-bold mb-2">爆款催化剂</h4>
+                    <p class="text-gray-600">LABUBU现象与产品创新，引爆全球热度的关键推手。</p>
+                </a>
+                 <a href="#section-operations" class="pillar-card block bg-white p-8 rounded-2xl shadow-lg text-center cursor-pointer">
+                    <div class="text-5xl mb-4">⚙️</div>
+                    <h4 class="text-xl font-bold mb-2">卓越运营</h4>
+                    <p class="text-gray-600">敏捷的供应链与DTC战略，是持续增长的隐形推手。</p>
+                </a>
+            </div>
+        </section>
+        
+        <div class="space-y-24">
+            <section id="section-blindbox">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold">盲盒魔力：一门关于惊喜的科学</h3>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-2">泡泡玛特的核心商业模式——盲盒，巧妙地融合了心理学与娱乐性。它通过制造不确定性、稀缺性和社交分享的欲望，将简单的购买行为转变为一场充满期待和惊喜的寻宝游戏，从而驱动了极高的用户粘性和重复购买率。</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-8">
+                    <div class="flex-1">
+                        <h4 class="text-2xl font-bold mb-4">盲盒机制解析</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="text-2xl mr-4">1️⃣</span>
+                                <div>
+                                    <h5 class="font-semibold">好奇心驱动</h5>
+                                    <p class="text-gray-600">未知的诱惑激发了消费者的探索欲和“赌徒心理”。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-2xl mr-4">2️⃣</span>
+                                <div>
+                                    <h5 class="font-semibold">人为稀缺性</h5>
+                                    <p class="text-gray-600">低概率的“隐藏款”（如1/144）极大地刺激了收藏热情和二级市场的活跃度。</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start">
+                                <span class="text-2xl mr-4">3️⃣</span>
+                                <div>
+                                    <h5 class="font-semibold">社交货币</h5>
+                                    <p class="text-gray-600">“开箱”视频和分享收藏成为一种社交语言，病毒式传播扩大了品牌影响力。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-1 w-full text-center p-8 bg-gray-50 rounded-lg">
+                         <div class="flex items-center justify-center space-x-4 md:space-x-8 text-4xl md:text-6xl">
+                            <div>🎁</div>
+                            <div class="text-gray-400 font-bold text-3xl">→</div>
+                            <div>❓</div>
+                            <div class="text-gray-400 font-bold text-3xl">→</div>
+                            <div>👾</div>
+                        </div>
+                        <p class="mt-4 text-gray-500">从购买到揭晓的惊喜之旅</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-ip">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold">IP宇宙：构建情感连接的核心</h3>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-2">IP是泡泡玛特的灵魂。公司通过与全球艺术家合作及内部团队创作，打造了一个多元化的角色宇宙。这些角色不再是简单的玩具，而是承载着情感、个性和故事的艺术品，与消费者建立了深厚的情感纽带。</p>
+                </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h4 class="text-2xl font-bold mb-4">艺术家IP：战略重心</h4>
+                        <p class="text-gray-600 mb-6">泡泡玛特战略性地将重心从授权IP转向艺术家自有IP，这赋予了品牌更强的控制力、更高的利润空间和持续的创新能力。2024年，艺术家IP的营收占比已达到惊人的81%，证明了这一战略的巨大成功。</p>
+                        <ul class="space-y-2">
+                           <li class="flex items-center"><span class="text-xl mr-2">⭐</span> <strong>MOLLY:</strong> 开启盲盒时代的经典IP</li>
+                           <li class="flex items-center"><span class="text-xl mr-2">⭐</span> <strong>SKULLPANDA:</strong> 史上最畅销潮流玩具系列</li>
+                           <li class="flex items-center"><span class="text-xl mr-2">⭐</span> <strong>LABUBU:</strong> 引爆全球热潮的现象级IP</li>
+                           <li class="flex items-center"><span class="text-xl mr-2">⭐</span> <strong>HIRONO:</strong> 在欧美市场意外走红的个性IP</li>
+                        </ul>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="ipRevenueChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-global">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold">全球版图：因地制宜的扩张之路</h3>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-2">泡泡玛特的全球扩张并非简单复制，而是采取了“小步快跑”的灵活策略。通过在核心商圈设立地标性旗舰店、铺设便捷的机器人商店，以及精准的本土化运营，品牌在不同文化背景下都找到了增长的突破口。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h4 class="font-bold text-lg mb-2">北美市场</h4>
+                        <p class="text-gray-600">从亚裔社群渗透，逐步引入自有IP，2025年Q1营收超去年全年。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h4 class="font-bold text-lg mb-2">欧洲市场</h4>
+                        <p class="text-gray-600">以法国为枢纽，借助艺术氛围提升品牌定位，营收增长超600%。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h4 class="font-bold text-lg mb-2">东南亚市场</h4>
+                        <p class="text-gray-600">借助名人效应（如BLACKPINK Lisa）迅速引爆，成为增长最快的区域之一。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="section-culture">
+                 <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold">文化共鸣：俘获两代人的心</h3>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-2">泡泡玛特精准地抓住了两个关键消费群体的脉搏：追求“悦己消费”和情感寄托的Z世代，以及寻求怀旧和心理慰藉的“Kidult”（童心未泯的成年人）。产品既是年轻人的社交货币，也是成年人的解压良方。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h4 class="text-2xl font-bold mb-3">Z世代：为情绪价值买单</h4>
+                        <p class="text-gray-600">对于Z世代来说，玩具是自我表达和情感慰藉的工具。泡泡玛特的产品设计精美、契合社交分享文化，成为他们展示个性和品味的重要载体。</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h4 class="text-2xl font-bold mb-3">Kidult经济：成年人的“游乐场”</h4>
+                        <p class="text-gray-600">成年人已成为玩具市场的重要力量。购买设计师玩具是一种怀旧消费，能在不确定的世界里提供安全感和乐趣，而这部分消费者通常拥有更高的购买力。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-catalyst">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold">爆款催化剂：LABUBU现象与产品创新</h3>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-2">近期海外市场的现象级火爆，离不开两大关键催化剂：一是LABUBU这一IP在全球范围内的病毒式传播，二是在毛绒玩具等新品类上的成功突破。这两者共同作用，为品牌带来了巨大的流量和营收增长。</p>
+                </div>
+                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h4 class="text-2xl font-bold mb-4">LABUBU: 一款IP如何引爆全球</h4>
+                        <p class="text-gray-600 mb-4">凭借“又萌又坏”的独特设计、名人效应（如BLACKPINK Lisa）的加持以及社交媒体的病毒式传播，LABUBU迅速成为全球爆款，被誉为“智能手机时代的豆豆娃”。</p>
+                        <div class="chart-container">
+                             <canvas id="labubuEffectChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                         <h4 class="text-2xl font-bold mb-4">毛绒玩具: 新的增长引擎</h4>
+                         <p class="text-gray-600 mb-4">毛绒玩具品类异军突起，2024年营收飙升近13倍，成为吸引新用户的“入门级产品”。特别是可作为时尚配饰的钥匙扣，成功将玩具融入日常穿搭潮流。</p>
+                        <div class="chart-container">
+                             <canvas id="plushRevenueChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="section-operations">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold">卓越运营：增长背后的隐形推手</h3>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-2">面对病毒式的需求增长，泡泡玛特强大的运营能力是其成功的基石。敏捷的供应链、数字化的仓储物流以及向DTC（直接面向消费者）模式的战略转型，确保了品牌能快速响应市场，抓住转瞬即逝的机会。</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div>
+                        <p class="text-3xl font-bold text-[#D8A793]">102天</p>
+                        <p class="text-gray-500 mt-2">2024年库存周转天数 (优于133天)</p>
+                    </div>
+                     <div>
+                        <p class="text-3xl font-bold text-[#D8A793]">66.8%</p>
+                        <p class="text-gray-500 mt-2">2024年创纪录的毛利率</p>
+                    </div>
+                     <div>
+                        <p class="text-3xl font-bold text-[#D8A793]">30天</p>
+                        <p class="text-gray-500 mt-2">“小批量+快反应”模式的目标周期</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section id="financials" class="my-16 md:my-24">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold mb-3">业绩亮点：数据见证全球化成果</h3>
+                <p class="text-gray-600 max-w-2xl mx-auto">强劲的财务数据是泡泡玛特全球化战略成功的最好证明。海外市场正从“新兴市场”转变为“核心增长引擎”，推动公司整体业绩迈上新台阶。</p>
+            </div>
+            <div class="bg-white p-4 md:p-8 rounded-xl shadow-lg">
+                <div class="chart-container h-96 md:h-[500px] max-h-[500px]">
+                    <canvas id="financialsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="future" class="text-center bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-gray-200">
+            <h3 class="text-3xl md:text-4xl font-bold mb-4">未来展望：成为世界级文化消费品牌</h3>
+            <p class="text-gray-600 max-w-3xl mx-auto mb-6">泡泡玛特的雄心不止于玩具。通过进军动画、拓展珠宝等新品类，并持续加强与艺术界的合作，公司正朝着成为像迪士尼或三丽鸥那样的全球性文化IP巨头迈进。海外市场的强劲表现，为其宏伟蓝图提供了坚实的基础。</p>
+            <a href="https://www.popmart.com/" target="_blank" rel="noopener noreferrer" class="inline-block bg-[#D8A793] text-white font-bold py-3 px-8 rounded-full hover:bg-[#BF8B7E] transition-colors">
+                探索更多
+            </a>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-100 mt-16">
+        <div class="container mx-auto px-6 py-4 text-center text-gray-500">
+            <p>&copy; 2025 交互式分析报告。基于公开信息和报告制作。</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const chartColors = {
+                primary: 'rgba(216, 167, 147, 0.8)',
+                primaryHover: 'rgba(191, 139, 126, 1)',
+                secondary: 'rgba(180, 180, 180, 0.7)',
+                secondaryHover: 'rgba(150, 150, 150, 1)',
+                accent: 'rgba(235, 203, 192, 0.8)',
+                text: '#4A4A4A',
+            };
+
+            const defaultChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: chartColors.text,
+                            font: {
+                                family: "'Noto Sans SC', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                        bodyFont: {
+                           family: "'Noto Sans SC', sans-serif"
+                        },
+                        titleFont: {
+                           family: "'Noto Sans SC', sans-serif"
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: chartColors.text },
+                        grid: { display: false }
+                    },
+                    y: {
+                        ticks: { color: chartColors.text },
+                        grid: { color: '#EAEAEA' }
+                    }
+                }
+            };
+            
+            const renderFinancialsChart = () => {
+                const ctx = document.getElementById('financialsChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['2022年', '2024年'],
+                        datasets: [
+                            {
+                                label: '总营收 (亿元)',
+                                data: [63.0, 130.4],
+                                backgroundColor: chartColors.primary,
+                                hoverBackgroundColor: chartColors.primaryHover,
+                                barPercentage: 0.6,
+                            },
+                            {
+                                label: '海外营收 (亿元)',
+                                data: [10.7, 50.7],
+                                backgroundColor: chartColors.accent,
+                                hoverBackgroundColor: chartColors.primary,
+                                barPercentage: 0.6,
+                            },
+                             {
+                                label: '净利润 (亿元)',
+                                data: [11.9, 34.0],
+                                backgroundColor: chartColors.secondary,
+                                hoverBackgroundColor: chartColors.secondaryHover,
+                                barPercentage: 0.6,
+                            }
+                        ]
+                    },
+                    options: { ...defaultChartOptions, 
+                        plugins: {
+                            ...defaultChartOptions.plugins,
+                            tooltip: {
+                                ...defaultChartOptions.plugins.tooltip,
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += context.parsed.y + ' 亿元';
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            ...defaultChartOptions.scales,
+                             y: {
+                                ...defaultChartOptions.scales.y,
+                                title: {
+                                    display: true,
+                                    text: '金额 (人民币亿元)',
+                                    color: chartColors.text
+                                }
+                            }
+                        }
+                    }
+                });
+            };
+
+            const renderIpRevenueChart = () => {
+                const ctx = document.getElementById('ipRevenueChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['艺术家IP', '授权IP'],
+                        datasets: [{
+                            label: '2024年营收占比',
+                            data: [81, 19],
+                            backgroundColor: [chartColors.primary, chartColors.secondary],
+                            hoverBackgroundColor: [chartColors.primaryHover, chartColors.secondaryHover],
+                            borderColor: '#FDFBF6',
+                            borderWidth: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                             legend: {
+                                position: 'bottom',
+                                labels: {
+                                    color: chartColors.text,
+                                    font: { family: "'Noto Sans SC', sans-serif" }
+                                }
+                            },
+                            tooltip: {
+                                ...defaultChartOptions.plugins.tooltip,
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.label}: ${context.raw}%`;
+                                    }
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: '2024年IP营收结构',
+                                color: chartColors.text,
+                                font: { size: 16, weight: 'bold' }
+                            }
+                        }
+                    }
+                });
+            };
+            
+            const renderLabubuEffectChart = () => {
+                const ctx = document.getElementById('labubuEffectChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['1月', '2月', '3月', '4月', '5月'],
+                        datasets: [{
+                            label: 'LABUBU 全渠道互动量',
+                            data: [100, 150, 450, 900, 2370],
+                            fill: true,
+                            backgroundColor: 'rgba(216, 167, 147, 0.2)',
+                            borderColor: chartColors.primary,
+                            tension: 0.4,
+                            pointBackgroundColor: chartColors.primary
+                        }]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        plugins: {
+                            ...defaultChartOptions.plugins,
+                             title: {
+                                display: true,
+                                text: '2025年LABUBU社媒热度飙升 (示意数据)',
+                                color: chartColors.text,
+                            }
+                        },
+                        scales: {
+                             x: {
+                                grid: { display: false }
+                             },
+                             y: {
+                                beginAtZero: true,
+                                grid: { color: '#EAEAEA' }
+                             }
+                        }
+                    }
+                });
+            };
+            
+            const renderPlushRevenueChart = () => {
+                 const ctx = document.getElementById('plushRevenueChart').getContext('2d');
+                 new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['毛绒玩具营收', '其他代表品类(示意)'],
+                        datasets: [{
+                            label: '2024年营收 (亿元)',
+                            data: [28.3, 10], 
+                            backgroundColor: [chartColors.primary, chartColors.secondary],
+                            hoverBackgroundColor: [chartColors.primaryHover, chartColors.secondaryHover],
+                            barThickness: 50,
+                        }]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        indexAxis: 'y',
+                         plugins: {
+                            ...defaultChartOptions.plugins,
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                                text: '2024年毛绒玩具营收贡献',
+                                color: chartColors.text,
+                            }
+                        }
+                    }
+                 });
+            };
+
+            renderFinancialsChart();
+            renderIpRevenueChart();
+            renderLabubuEffectChart();
+            renderPlushRevenueChart();
+        });
+    </script>
+
+</body>
+</html>
