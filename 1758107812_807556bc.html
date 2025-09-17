@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ECharts Graph Example</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #111;
+    }
+    #main {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="main"></div>
+  <script>
+    const chartDom = document.getElementById('main');
+    const myChart = echarts.init(chartDom);
+
+
+    // ==== 示例数据（节点需包含 buy / sell 字段）====
+    const graphData = {"nodes": [{"name": "12501885",buy: 120, sell: 80 }, {"name": "38504888",buy: 120, sell: 80 }, {"name": "1006474"}, {"name": "824167"}, {"name": "9223078"}, {"name": "4721617"}, {"name": "11205"}, {"name": "73116357"}, {"name": "10459604"}, {"name": "1759387"}, {"name": "4313162"}, {"name": "1468604"}, {"name": "1766197"}, {"name": "16181671"}, {"name": "1059047"}, {"name": "195459"}, {"name": "354849"}, {"name": "1298962"}, {"name": "375317"}, {"name": "30312499"}, {"name": "27277647"}, {"name": "7206990"}, {"name": "461576"}, {"name": "1049068"}, {"name": "6781652"}, {"name": "26216869"}, {"name": "2052788"}, {"name": "15771856"}, {"name": "17615392"}, {"name": "833664"}, {"name": "12523934"}, {"name": "1652803"}, {"name": "21117257"}, {"name": "7807263"}, {"name": "6574407"}, {"name": "2130720"}, {"name": "723462"}, {"name": "1767570"}, {"name": "46919885"}, {"name": "63900428"}, {"name": "4965041"}, {"name": "4735596"}, {"name": "43893"}, {"name": "16736"}, {"name": "2046717"}, {"name": "35228006"}, {"name": "0"}, {"name": "57141599"}, {"name": "32565620"}, {"name": "4104975"}, {"name": "35228181"}, {"name": "57346383"}, {"name": "9431825"}, {"name": "22384652"}, {"name": "903174"}, {"name": "63899834"}, {"name": "2087442"}, {"name": "1419954"}, {"name": "1919224"}, {"name": "40962335"}, {"name": "193348"}, {"name": "41374471"}, {"name": "33180059"}, {"name": "42805716"}, {"name": "13725986"}, {"name": "5745459"}, {"name": "12296603"}, {"name": "43430255"}, {"name": "1915685"}, {"name": "488266"}, {"name": "1917151"}, {"name": "10068206"}, {"name": "12296327"}, {"name": "35146"}, {"name": "3289544"}, {"name": "8215495"}, {"name": "56324261"}, {"name": "1624115"}, {"name": "3518644"}, {"name": "19663142"}, {"name": "27658490"}, {"name": "2932"}, {"name": "23148950"}, {"name": "1735272"}, {"name": "319874"}, {"name": "270713"}, {"name": "67586591"}, {"name": "1798857"}, {"name": "4514294"}, {"name": "1704838"}, {"name": "1446642"}, {"name": "45878168"}, {"name": "1255997"}, {"name": "37480943"}, {"name": "283211"}, {"name": "1456977"}, {"name": "1863925"}, {"name": "2189634"}, {"name": "758167"}, {"name": "56936794"}, {"name": "4717062"}, {"name": "61239704"}, {"name": "3897824"}, {"name": "8618902"}, {"name": "1079373"}, {"name": "23771731"}, {"name": "1383341"}, {"name": "5552641"}, {"name": "12908553"}, {"name": "58984791"}, {"name": "211768"}, {"name": "4317907"}, {"name": "4115241"}, {"name": "21322091"}, {"name": "28061919"}, {"name": "1468490"}, {"name": "2074743"}, {"name": "348744"}, {"name": "88979"}, {"name": "49780"}, {"name": "70453781"}, {"name": "297384"}, {"name": "25193262"}, {"name": "80586"}, {"name": "64924221"}, {"name": "1980553"}, {"name": "9240713"}], "edges": [{"source": "1863925", "target": "824167", "name": "12,2156.0"}, {"source": "5552641", "target": "12523934", "name": "1,2156.0"}, {"source": "3897824", "target": "63899834", "name": "8,2254.0"}, {"source": "2130720", "target": "12501885", "name": "3,2352.0"}, {"source": "43893", "target": "283211", "name": "43,1837.0"}, {"source": "2087442", "target": "1446642", "name": "5,2156.0"}, {"source": "1255997", "target": "283211", "name": "1,14112.0"}, {"source": "4735596", "target": "12523934", "name": "21,2156.0"}, {"source": "354849", "target": "283211", "name": "1,14112.0"}, {"source": "58984791", "target": "283211", "name": "1,302.0"}, {"source": "38504888", "target": "283211", "name": "653,2058.0"}, {"source": "41374471", "target": "12523934", "name": "20,2156.0"}, {"source": "1915685", "target": "283211", "name": "1,14994.0"}, {"source": "2087442", "target": "283211", "name": "2,2156.0"}, {"source": "33180059", "target": "12501885", "name": "37,2352.0"}, {"source": "2074743", "target": "12523934", "name": "21,2156.0"}, {"source": "3897824", "target": "12523934", "name": "10,2156.0"}, {"source": "283211", "target": "12523934", "name": "83,2940.0"}, {"source": "723462", "target": "12523934", "name": "12,2156.0"}, {"source": "40962335", "target": "283211", "name": "1,14994.0"}, {"source": "35146", "target": "12523934", "name": "20,2156.0"}, {"source": "35146", "target": "461576", "name": "7,2156.0"}, {"source": "21117257", "target": "12523934", "name": "27,2156.0"}, {"source": "1456977", "target": "12523934", "name": "88,2156.0"}, {"source": "7206990", "target": "283211", "name": "1,14112.0"}, {"source": "1652803", "target": "4514294", "name": "10,2058.0"}, {"source": "2087442", "target": "758167", "name": "10,2156.0"}, {"source": "13725986", "target": "23771731", "name": "6,2058.0"}, {"source": "49780", "target": "2932", "name": "1,2254.0"}, {"source": "21322091", "target": "12523934", "name": "11,2156.0"}, {"source": "1468490", "target": "63899834", "name": "6,2254.0"}, {"source": "67586591", "target": "283211", "name": "250,1960.0"}, {"source": "1298962", "target": "12523934", "name": "1,1960.0"}, {"source": "211768", "target": "12523934", "name": "15,2156.0"}, {"source": "64924221", "target": "488266", "name": "10,2156.0"}, {"source": "1798857", "target": "283211", "name": "1,14112.0"}, {"source": "12296603", "target": "283211", "name": "1,14994.0"}, {"source": "49780", "target": "12523934", "name": "22,2156.0"}, {"source": "3518644", "target": "12523934", "name": "22,2156.0"}, {"source": "35146", "target": "3289544", "name": "11,2156.0"}, {"source": "1980553", "target": "12523934", "name": "23,2156.0"}, {"source": "49780", "target": "6574407", "name": "5,2254.0"}, {"source": "2087442", "target": "61239704", "name": "10,2156.0"}, {"source": "10459604", "target": "12523934", "name": "15,2254.0"}, {"source": "73116357", "target": "4514294", "name": "23,2058.0"}, {"source": "2189634", "target": "12523934", "name": "317,2156.0"}, {"source": "1079373", "target": "283211", "name": "1,14112.0"}, {"source": "56936794", "target": "283211", "name": "419,1960.0"}, {"source": "283211", "target": "1468604", "name": "1,2254.0"}, {"source": "1468490", "target": "12523934", "name": "3,2058.0"}, {"source": "833664", "target": "12523934", "name": "2,2156.0"}, {"source": "4717062", "target": "12523934", "name": "6,2156.0"}, {"source": "67586591", "target": "7807263", "name": "15,2058.0"}, {"source": "903174", "target": "12523934", "name": "42,2254.0"}, {"source": "4735596", "target": "88979", "name": "9,2156.0"}, {"source": "6781652", "target": "283211", "name": "4,1960.0"}, {"source": "67586591", "target": "9240713", "name": "15,1666.0"}, {"source": "13725986", "target": "488266", "name": "3,2058.0"}, {"source": "8215495", "target": "283211", "name": "7,2058.0"}, {"source": "57141599", "target": "283211", "name": "61,1960.0"}, {"source": "283211", "target": "13725986", "name": "10,2450.0"}, {"source": "16736", "target": "12501885", "name": "15,2450.0"}, {"source": "195459", "target": "12523934", "name": "63,2156.0"}, {"source": "73116357", "target": "2046717", "name": "28,2058.0"}, {"source": "19663142", "target": "824167", "name": "9,2156.0"}, {"source": "35146", "target": "1735272", "name": "5,2156.0"}, {"source": "9431825", "target": "824167", "name": "6,2156.0"}, {"source": "4313162", "target": "283211", "name": "1,14994.0"}, {"source": "56324261", "target": "4514294", "name": "39,2058.0"}, {"source": "12501885", "target": "193348", "name": "2,2156.0"}, {"source": "67586591", "target": "26216869", "name": "10,1862.0"}, {"source": "9223078", "target": "12523934", "name": "23,2156.0"}, {"source": "1059047", "target": "12501885", "name": "1,2352.0"}, {"source": "3897824", "target": "35228006", "name": "10,2254.0"}, {"source": "1917151", "target": "12523934", "name": "28,2156.0"}, {"source": "1919224", "target": "12523934", "name": "15,2156.0"}, {"source": "4104975", "target": "12523934", "name": "21,2156.0"}, {"source": "22384652", "target": "283211", "name": "1,14112.0"}, {"source": "38504888", "target": "12296327", "name": "6,2058.0"}, {"source": "1468490", "target": "27277647", "name": "7,2254.0"}, {"source": "283211", "target": "12501885", "name": "199,2940.0"}, {"source": "67586591", "target": "12296327", "name": "10,1960.0"}, {"source": "67586591", "target": "1383341", "name": "15,1764.0"}, {"source": "1767570", "target": "12501885", "name": "46,2352.0"}, {"source": "37480943", "target": "12523934", "name": "7,2156.0"}, {"source": "35146", "target": "23148950", "name": "11,2156.0"}, {"source": "1419954", "target": "12523934", "name": "21,2156.0"}, {"source": "2087442", "target": "824167", "name": "8,2156.0"}, {"source": "4965041", "target": "824167", "name": "9,2156.0"}, {"source": "297384", "target": "23771731", "name": "4,2156.0"}, {"source": "16181671", "target": "488266", "name": "4,2156.0"}, {"source": "0", "target": "12501885", "name": "84,2760.333333333333"}, {"source": "17615392", "target": "12523934", "name": "65,2156.0"}, {"source": "1766197", "target": "12523934", "name": "6,2156.0"}, {"source": "4735596", "target": "28061919", "name": "3,2156.0"}, {"source": "63900428", "target": "283211", "name": "1,14112.0"}, {"source": "2052788", "target": "12523934", "name": "15,2254.0"}, {"source": "12523934", "target": "283211", "name": "480,1862.0"}, {"source": "270713", "target": "12908553", "name": "6,2156.0"}, {"source": "46919885", "target": "12523934", "name": "10,2058.0"}, {"source": "283211", "target": "67586591", "name": "315,2940.0"}, {"source": "13725986", "target": "283211", "name": "145,2058.0"}, {"source": "1704838", "target": "12501885", "name": "124,2450.0"}, {"source": "8618902", "target": "283211", "name": "1,14994.0"}, {"source": "4721617", "target": "12501885", "name": "110,2450.0"}, {"source": "4115241", "target": "12501885", "name": "8,2352.0"}, {"source": "35228181", "target": "283211", "name": "1,14112.0"}, {"source": "319874", "target": "12523934", "name": "30,2352.0"}, {"source": "4735596", "target": "375317", "name": "10,2156.0"}, {"source": "348744", "target": "12523934", "name": "43,2156.0"}, {"source": "15771856", "target": "12501885", "name": "9,2450.0"}, {"source": "45878168", "target": "283211", "name": "1,14112.0"}, {"source": "27658490", "target": "12296327", "name": "3,1960.0"}, {"source": "283211", "target": "70453781", "name": "263,2940.0"}, {"source": "1006474", "target": "283211", "name": "5,3307.0"}, {"source": "32565620", "target": "193348", "name": "8,2156.0"}, {"source": "70453781", "target": "1383341", "name": "293,1568.0"}, {"source": "1624115", "target": "12501885", "name": "8,2352.0"}, {"source": "4317907", "target": "12501885", "name": "1,2940.0"}, {"source": "283211", "target": "57346383", "name": "205,2940.0"}, {"source": "49780", "target": "25193262", "name": "14,2254.0"}, {"source": "57346383", "target": "1383341", "name": "370,1568.0"}, {"source": "30312499", "target": "12501885", "name": "14,2450.0"}, {"source": "319874", "target": "12501885", "name": "12,2352.0"}, {"source": "35146", "target": "1456977", "name": "4,2156.0"}, {"source": "80586", "target": "488266", "name": "1,2156.0"}, {"source": "270713", "target": "12523934", "name": "8,2156.0"}, {"source": "283211", "target": "38504888", "name": "659,2940.0"}, {"source": "73116357", "target": "283211", "name": "9,2058.0"}, {"source": "1049068", "target": "2046717", "name": "9,2058.0"}, {"source": "57346383", "target": "283211", "name": "2,1568.0"}, {"source": "11205", "target": "12523934", "name": "6,2156.0"}, {"source": "42805716", "target": "12501885", "name": "41,2450.0"}, {"source": "43430255", "target": "283211", "name": "1,14112.0"}, {"source": "6781652", "target": "42805716", "name": "15,1960.0"}, {"source": "1759387", "target": "283211", "name": "1,14112.0"}, {"source": "5745459", "target": "12523934", "name": "6,2156.0"}, {"source": "10068206", "target": "193348", "name": "8,2156.0"}]};
+
+
+    // 找到节点值范围
+    const values = graphData.nodes.map(n => Math.max(n.buy || 0, n.sell || 0));
+    const maxVal = Math.max(...values);
+    const minVal = Math.min(...values);
+
+
+    function sizeMapper(val) {
+      if (maxVal === minVal) return 20;
+      return 10 + (val - minVal) / (maxVal - minVal) * 40;
+    }
+
+
+    const option = {
+      backgroundColor: '#111',
+      title: {
+        text: 'ECharts 网络关系图 (节点大小 ~ 买卖量)',
+        left: 'center',
+        textStyle: { color: '#fff' }
+      },
+      tooltip: {
+        formatter: (param) => {
+          if (param.dataType === 'edge') {
+            return `关系: ${param.data.source} → ${param.data.target}<br/>属性: ${param.data.name}`;
+          }
+          return `节点: ${param.data.name}<br/>买: ${param.data.buy || 0}<br/>卖: ${param.data.sell || 0}`;
+        }
+      },
+      series: [
+        {
+          type: 'graph',
+          layout: 'force',
+          roam: true,
+          draggable: true,
+          symbol: 'circle',
+          // 设置箭头
+          edgeSymbol: ['none', 'arrow'],
+          edgeSymbolSize: 10,
+          data: graphData.nodes.map(n => ({
+            ...n,
+            symbolSize: sizeMapper(Math.max(n.buy || 0, n.sell || 0))
+          })),
+          edges: graphData.edges,
+          label: {
+            show: false,
+            position: 'right',
+            color: '#fff'
+          },
+          edgeLabel: {
+            show: false
+          },
+          force: {
+            repulsion: 180,
+            edgeLength: [50, 200]
+          },
+          lineStyle: {
+            color: '#aaa',
+            opacity: 0.7
+          }
+        }
+      ]
+    };
+
+
+    myChart.setOption(option);
+  </script>
+</body>
+</html>
