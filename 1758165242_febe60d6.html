@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ECharts Graph</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #111;
+    }
+    #main {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="main"></div>
+  <script>
+    const chartDom = document.getElementById('main');
+    const myChart = echarts.init(chartDom);
+
+    const graphData = {"nodes": [{"id": "283211", "name": "283211", "symbolSize": 60.0, "buy": 2032.0, "sell": 404.0}, {"id": "38504888", "name": "38504888", "symbolSize": 26.034482758620687, "buy": 0.0, "sell": 653.0}, {"id": "12523934", "name": "12523934", "symbolSize": 21.773399014778327, "buy": 0.0, "sell": 480.0}, {"id": "13725986", "name": "13725986", "symbolSize": 13.52216748768473, "buy": 0.0, "sell": 145.0}, {"id": "67586591", "name": "67586591", "symbolSize": 16.108374384236456, "buy": 0.0, "sell": 250.0}, {"id": "8215495", "name": "8215495", "symbolSize": 10.123152709359607, "buy": 0.0, "sell": 7.0}, {"id": "12501885", "name": "12501885", "symbolSize": 14.852216748768473, "buy": 199.0, "sell": 0.0}, {"id": "57346383", "name": "57346383", "symbolSize": 15.0, "buy": 205.0, "sell": 2.0}, {"id": "73116357", "name": "73116357", "symbolSize": 10.172413793103448, "buy": 0.0, "sell": 9.0}, {"id": "2087442", "name": "2087442", "symbolSize": 10.0, "buy": 0.0, "sell": 2.0}, {"id": "56936794", "name": "56936794", "symbolSize": 20.27093596059113, "buy": 0.0, "sell": 419.0}, {"id": "6781652", "name": "6781652", "symbolSize": 10.049261083743842, "buy": 0.0, "sell": 4.0}, {"id": "57141599", "name": "57141599", "symbolSize": 11.45320197044335, "buy": 0.0, "sell": 61.0}], "edges": [{"source": "283211", "target": "12501885", "quantity": 199.0, "price": 2940.0}, {"source": "283211", "target": "57346383", "quantity": 205.0, "price": 2940.0}, {"source": "6781652", "target": "283211", "quantity": 4.0, "price": 1960.0}, {"source": "8215495", "target": "283211", "quantity": 7.0, "price": 2058.0}, {"source": "57141599", "target": "283211", "quantity": 61.0, "price": 1960.0}, {"source": "67586591", "target": "283211", "quantity": 250.0, "price": 1960.0}, {"source": "57346383", "target": "283211", "quantity": 2.0, "price": 1568.0}, {"source": "13725986", "target": "283211", "quantity": 145.0, "price": 2058.0}, {"source": "73116357", "target": "283211", "quantity": 9.0, "price": 2058.0}, {"source": "12523934", "target": "283211", "quantity": 480.0, "price": 1862.0}, {"source": "56936794", "target": "283211", "quantity": 419.0, "price": 1960.0}, {"source": "2087442", "target": "283211", "quantity": 2.0, "price": 2156.0}, {"source": "38504888", "target": "283211", "quantity": 653.0, "price": 2058.0}]};
+
+    const option = {
+      backgroundColor: '#111',
+      title: {
+        text: 'ECharts Graph',
+        left: 'center',
+        textStyle: { color: '#fff' }
+      },
+      tooltip: {
+        formatter: function (param) {
+          if (param.dataType === 'edge') {
+            return `关系: ${param.data.source} → ${param.data.target}<br/>
+                    数量: ${param.data.quantity}<br/>
+                    单价: ${param.data.price}`;
+          }
+          return `节点: ${param.data.name}<br/>
+                  买入: ${param.data.buy}<br/>
+                  卖出: ${param.data.sell}`;
+        }
+      },
+      series: [
+        {
+          type: 'graph',
+          layout: 'force',
+          roam: true,
+          draggable: true,
+          edgeSymbol: ['none', 'arrow'],
+          edgeSymbolSize: 8,
+          data: graphData.nodes,
+          edges: graphData.edges,
+          label: {
+            show: function(params) {
+              return params.data.symbolSize > 10 + (60-10)/2;
+            },
+            position: 'right',
+            color: '#fff'
+          },
+          lineStyle: {
+            color: '#aaa',
+            opacity: 0.7
+          },
+          force: {
+            repulsion: 150,
+            edgeLength: [60, 200]
+          }
+        }
+      ]
+    };
+
+    myChart.setOption(option);
+  </script>
+</body>
+</html>
