@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ECharts Graph</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #111;
+    }
+    #main {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="main"></div>
+  <script>
+    const chartDom = document.getElementById('main');
+    const myChart = echarts.init(chartDom);
+
+    const graphData = {"nodes": [{"id": "1665997", "name": "1665997", "symbolSize": 11.736137765154423, "buy": 0.0, "sell": 1527.0}, {"id": "31951023", "name": "31951023", "symbolSize": 22.575164402139144, "buy": 9999.0, "sell": 0.0}, {"id": "370801", "name": "370801", "symbolSize": 22.436989841611013, "buy": 0.0, "sell": 9891.0}, {"id": "56527596", "name": "56527596", "symbolSize": 10.0, "buy": 170.0, "sell": 0.0}, {"id": "2900475", "name": "2900475", "symbolSize": 15.280059363885265, "buy": 4297.0, "sell": 0.0}, {"id": "10668359", "name": "10668359", "symbolSize": 10.211100023029093, "buy": 0.0, "sell": 335.0}, {"id": "4543059", "name": "4543059", "symbolSize": 10.307054578951409, "buy": 0.0, "sell": 410.0}, {"id": "5967879", "name": "5967879", "symbolSize": 27.033852767329392, "buy": 13484.0, "sell": 4838.0}, {"id": "31545540", "name": "31545540", "symbolSize": 22.575164402139144, "buy": 9999.0, "sell": 0.0}, {"id": "35432600", "name": "35432600", "symbolSize": 22.575164402139144, "buy": 9999.0, "sell": 0.0}, {"id": "2064510", "name": "2064510", "symbolSize": 12.425731173716128, "buy": 0.0, "sell": 2066.0}, {"id": "4721524", "name": "4721524", "symbolSize": 60.0, "buy": 1.0, "sell": 39251.0}, {"id": "31545520", "name": "31545520", "symbolSize": 22.575164402139144, "buy": 9999.0, "sell": 0.0}, {"id": "9227082", "name": "9227082", "symbolSize": 10.038381822368926, "buy": 200.0, "sell": 0.0}, {"id": "42807590", "name": "42807590", "symbolSize": 10.0, "buy": 170.0, "sell": 0.0}], "edges": [{"source": "4543059", "target": "31951023", "quantity": 410.0, "price": 110.0}, {"source": "5967879", "target": "2900475", "quantity": 4297.0, "price": 76.0}, {"source": "4721524", "target": "35432600", "quantity": 9999.0, "price": 110.0}, {"source": "370801", "target": "5967879", "quantity": 9891.0, "price": 64.0}, {"source": "1665997", "target": "5967879", "quantity": 1527.0, "price": 64.0}, {"source": "4721524", "target": "31951023", "quantity": 9254.0, "price": 110.0}, {"source": "5967879", "target": "42807590", "quantity": 170.0, "price": 68.0}, {"source": "5967879", "target": "4721524", "quantity": 1.0, "price": 68.0}, {"source": "5967879", "target": "9227082", "quantity": 200.0, "price": 68.0}, {"source": "10668359", "target": "31951023", "quantity": 335.0, "price": 110.0}, {"source": "2064510", "target": "5967879", "quantity": 2066.0, "price": 68.0}, {"source": "5967879", "target": "56527596", "quantity": 170.0, "price": 68.0}, {"source": "4721524", "target": "31545520", "quantity": 9999.0, "price": 110.0}, {"source": "4721524", "target": "31545540", "quantity": 9999.0, "price": 110.0}]};
+
+    const option = {
+      backgroundColor: '#111',
+      title: {
+        text: 'ECharts Graph',
+        left: 'center',
+        textStyle: { color: '#fff' }
+      },
+      tooltip: {
+        formatter: function (param) {
+          if (param.dataType === 'edge') {
+            return `关系: ${param.data.source} → ${param.data.target}<br/>
+                    数量: ${param.data.quantity}<br/>
+                    单价: ${param.data.price}`;
+          }
+          return `节点: ${param.data.name}<br/>
+                  买入: ${param.data.buy}<br/>
+                  卖出: ${param.data.sell}`;
+        }
+      },
+      series: [
+        {
+          type: 'graph',
+          layout: 'force',
+          roam: true,
+          draggable: true,
+          edgeSymbol: ['none', 'arrow'],
+          edgeSymbolSize: 8,
+          data: graphData.nodes,
+          edges: graphData.edges,
+          emphasis: {
+            focus: 'adjacency',
+            label: {
+              show: true,
+              color: '#ff0',
+              fontWeight: 'bold'
+            },
+            lineStyle: {
+              color: '#ff5722',
+              width: 3,
+              opacity: 1
+            }
+          },
+          lineStyle: {
+            color: '#aaa',
+            opacity: 0.6,
+            width: 1
+          },
+          label: {
+            position: 'right',
+            color: '#fff'
+          },
+          force: {
+            repulsion: 150,
+            edgeLength: [60, 200]
+          }
+        }
+      ]
+    };
+
+    myChart.setOption(option);
+  </script>
+</body>
+</html>
