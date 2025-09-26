@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ECharts Graph</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #111;
+    }
+    #main {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="main"></div>
+  <script>
+    const chartDom = document.getElementById('main');
+    const myChart = echarts.init(chartDom);
+
+    const graphData = {"nodes": [{"id": "35639722", "name": "35639722", "symbolSize": 10.305102533070407, "buy": 0.0, "sell": 1016.0}, {"id": "35227784", "name": "35227784", "symbolSize": 15.775366673155208, "buy": 13943.0, "sell": 0.0}, {"id": "31135968", "name": "31135968", "symbolSize": 14.10640080570766, "buy": 9999.0, "sell": 0.0}, {"id": "31541449", "name": "31541449", "symbolSize": 14.549878551418875, "buy": 11047.0, "sell": 0.0}, {"id": "133954", "name": "133954", "symbolSize": 60.0, "buy": 0.0, "sell": 118452.0}, {"id": "35227793", "name": "35227793", "symbolSize": 14.10640080570766, "buy": 9999.0, "sell": 0.0}, {"id": "35854448", "name": "35854448", "symbolSize": 15.480843284782111, "buy": 13247.0, "sell": 0.0}, {"id": "3287799", "name": "3287799", "symbolSize": 10.23824233858341, "buy": 0.0, "sell": 858.0}, {"id": "1251934", "name": "1251934", "symbolSize": 14.10640080570766, "buy": 0.0, "sell": 9999.0}, {"id": "34818170", "name": "34818170", "symbolSize": 10.156994507308074, "buy": 666.0, "sell": 0.0}, {"id": "30931165", "name": "30931165", "symbolSize": 15.186319896409016, "buy": 12551.0, "sell": 0.0}, {"id": "30722257", "name": "30722257", "symbolSize": 13.408600421473125, "buy": 8350.0, "sell": 0.0}, {"id": "34838669", "name": "34838669", "symbolSize": 10.0, "buy": 295.0, "sell": 0.0}, {"id": "31131853", "name": "31131853", "symbolSize": 15.447836353326506, "buy": 13169.0, "sell": 0.0}, {"id": "34203821", "name": "34203821", "symbolSize": 14.084396184737257, "buy": 9947.0, "sell": 0.0}, {"id": "34834568", "name": "34834568", "symbolSize": 15.513427050449826, "buy": 13324.0, "sell": 0.0}, {"id": "34642062", "name": "34642062", "symbolSize": 15.709775976031889, "buy": 13788.0, "sell": 0.0}], "edges": [{"source": "133954", "target": "35227793", "quantity": 9999.0, "price": 110.0}, {"source": "133954", "target": "35227784", "quantity": 13943.0, "price": 110.0}, {"source": "35639722", "target": "34818170", "quantity": 666.0, "price": 110.0}, {"source": "133954", "target": "31131853", "quantity": 13169.0, "price": 110.0}, {"source": "133954", "target": "31541449", "quantity": 11047.0, "price": 110.0}, {"source": "1251934", "target": "30722257", "quantity": 8350.0, "price": 110.0}, {"source": "133954", "target": "34203821", "quantity": 9947.0, "price": 110.0}, {"source": "1251934", "target": "34838669", "quantity": 295.0, "price": 110.0}, {"source": "133954", "target": "34642062", "quantity": 13788.0, "price": 110.0}, {"source": "133954", "target": "35854448", "quantity": 12897.0, "price": 110.0}, {"source": "3287799", "target": "30931165", "quantity": 858.0, "price": 110.0}, {"source": "133954", "target": "30931165", "quantity": 10339.0, "price": 110.0}, {"source": "35639722", "target": "35854448", "quantity": 350.0, "price": 110.0}, {"source": "133954", "target": "34834568", "quantity": 13324.0, "price": 110.0}, {"source": "133954", "target": "31135968", "quantity": 9999.0, "price": 110.0}, {"source": "1251934", "target": "30931165", "quantity": 1354.0, "price": 110.0}]};
+
+    const option = {
+      backgroundColor: '#111',
+      title: {
+        text: 'ECharts Graph',
+        left: 'center',
+        textStyle: { color: '#fff' }
+      },
+      tooltip: {
+        formatter: function (param) {
+          if (param.dataType === 'edge') {
+            return `关系: ${param.data.source} → ${param.data.target}<br/>
+                    数量: ${param.data.quantity}<br/>
+                    单价: ${param.data.price}`;
+          }
+          return `节点: ${param.data.name}<br/>
+                  买入: ${param.data.buy}<br/>
+                  卖出: ${param.data.sell}`;
+        }
+      },
+      series: [
+        {
+          type: 'graph',
+          layout: 'force',
+          roam: true,
+          draggable: true,
+          edgeSymbol: ['none', 'arrow'],
+          edgeSymbolSize: 8,
+          data: graphData.nodes,
+          edges: graphData.edges,
+          emphasis: {
+            focus: 'adjacency',
+            label: {
+              show: true,
+              color: '#ff0',
+              fontWeight: 'bold'
+            },
+            lineStyle: {
+              color: '#ff5722',
+              width: 3,
+              opacity: 1
+            }
+          },
+          lineStyle: {
+            color: '#aaa',
+            opacity: 0.6,
+            width: 1
+          },
+          label: {
+            position: 'right',
+            color: '#fff'
+          },
+          force: {
+            repulsion: 150,
+            edgeLength: [60, 200]
+          }
+        }
+      ]
+    };
+
+    myChart.setOption(option);
+  </script>
+</body>
+</html>
