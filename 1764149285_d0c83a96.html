@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ECharts Graph</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #111;
+    }
+    #main {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="main"></div>
+  <script>
+    const chartDom = document.getElementById('main');
+    const myChart = echarts.init(chartDom);
+
+    const graphData = {"nodes": [{"id": "34411467", "name": "34411467", "symbolSize": 10.747481312967176, "buy": 47.0, "sell": 0.0}, {"id": "48130891", "name": "48130891", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "35023017", "name": "35023017", "symbolSize": 10.991225219369516, "buy": 62.0, "sell": 0.0}, {"id": "38505386", "name": "38505386", "symbolSize": 10.779980500487488, "buy": 49.0, "sell": 0.0}, {"id": "36662208", "name": "36662208", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "418404", "name": "418404", "symbolSize": 12.469938251543711, "buy": 0.0, "sell": 153.0}, {"id": "656276", "name": "656276", "symbolSize": 11.364965875853104, "buy": 0.0, "sell": 85.0}, {"id": "35843042", "name": "35843042", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "32770232", "name": "32770232", "symbolSize": 10.97497562560936, "buy": 61.0, "sell": 0.0}, {"id": "2148812", "name": "2148812", "symbolSize": 10.064998375040624, "buy": 5.0, "sell": 0.0}, {"id": "33179872", "name": "33179872", "symbolSize": 10.828729281767956, "buy": 52.0, "sell": 0.0}, {"id": "33392839", "name": "33392839", "symbolSize": 10.8124796880078, "buy": 51.0, "sell": 0.0}, {"id": "45468486", "name": "45468486", "symbolSize": 10.861228469288267, "buy": 54.0, "sell": 0.0}, {"id": "36457398", "name": "36457398", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "84846", "name": "84846", "symbolSize": 10.032499187520312, "buy": 0.0, "sell": 3.0}, {"id": "48337703", "name": "48337703", "symbolSize": 10.828729281767956, "buy": 52.0, "sell": 0.0}, {"id": "33181878", "name": "33181878", "symbolSize": 10.682482937926551, "buy": 43.0, "sell": 0.0}, {"id": "47721302", "name": "47721302", "symbolSize": 10.828729281767956, "buy": 52.0, "sell": 0.0}, {"id": "44649351", "name": "44649351", "symbolSize": 10.861228469288267, "buy": 54.0, "sell": 0.0}, {"id": "35842212", "name": "35842212", "symbolSize": 10.763730906727332, "buy": 48.0, "sell": 0.0}, {"id": "39529411", "name": "39529411", "symbolSize": 10.861228469288267, "buy": 54.0, "sell": 0.0}, {"id": "33184727", "name": "33184727", "symbolSize": 10.796230094247644, "buy": 50.0, "sell": 0.0}, {"id": "32155866", "name": "32155866", "symbolSize": 10.97497562560936, "buy": 61.0, "sell": 0.0}, {"id": "2664647", "name": "2664647", "symbolSize": 12.876178095547612, "buy": 0.0, "sell": 178.0}, {"id": "8224834", "name": "8224834", "symbolSize": 10.129996750081247, "buy": 0.0, "sell": 9.0}, {"id": "2468086", "name": "2468086", "symbolSize": 10.016249593760156, "buy": 0.0, "sell": 2.0}, {"id": "42601358", "name": "42601358", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "3901672", "name": "3901672", "symbolSize": 10.048748781280468, "buy": 0.0, "sell": 4.0}, {"id": "33601715", "name": "33601715", "symbolSize": 10.796230094247644, "buy": 50.0, "sell": 0.0}, {"id": "45263734", "name": "45263734", "symbolSize": 10.73123171920702, "buy": 46.0, "sell": 0.0}, {"id": "45265782", "name": "45265782", "symbolSize": 10.779980500487488, "buy": 49.0, "sell": 0.0}, {"id": "32162000", "name": "32162000", "symbolSize": 11.104972375690608, "buy": 69.0, "sell": 0.0}, {"id": "39938984", "name": "39938984", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "46902121", "name": "46902121", "symbolSize": 10.861228469288267, "buy": 54.0, "sell": 0.0}, {"id": "12706067", "name": "12706067", "symbolSize": 10.0, "buy": 0.0, "sell": 1.0}, {"id": "46908260", "name": "46908260", "symbolSize": 10.779980500487488, "buy": 49.0, "sell": 0.0}, {"id": "2697747", "name": "2697747", "symbolSize": 10.113747156321091, "buy": 0.0, "sell": 8.0}, {"id": "40965031", "name": "40965031", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "50178912", "name": "50178912", "symbolSize": 10.909977250568735, "buy": 57.0, "sell": 0.0}, {"id": "35023839", "name": "35023839", "symbolSize": 10.909977250568735, "buy": 57.0, "sell": 0.0}, {"id": "46701415", "name": "46701415", "symbolSize": 10.861228469288267, "buy": 54.0, "sell": 0.0}, {"id": "44649338", "name": "44649338", "symbolSize": 10.763730906727332, "buy": 48.0, "sell": 0.0}, {"id": "37071793", "name": "37071793", "symbolSize": 10.779980500487488, "buy": 49.0, "sell": 0.0}, {"id": "45269877", "name": "45269877", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "48130916", "name": "48130916", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "1729317", "name": "1729317", "symbolSize": 10.048748781280468, "buy": 0.0, "sell": 4.0}, {"id": "40758166", "name": "40758166", "symbolSize": 10.844978875528112, "buy": 53.0, "sell": 0.0}, {"id": "43010966", "name": "43010966", "symbolSize": 10.56873578160546, "buy": 36.0, "sell": 0.0}, {"id": "25807537", "name": "25807537", "symbolSize": 60.0, "buy": 503.0, "sell": 3078.0}, {"id": "34823130", "name": "34823130", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "45472582", "name": "45472582", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "1536530", "name": "1536530", "symbolSize": 11.413714657133571, "buy": 88.0, "sell": 0.0}, {"id": "43215748", "name": "43215748", "symbolSize": 10.73123171920702, "buy": 46.0, "sell": 0.0}, {"id": "33599667", "name": "33599667", "symbolSize": 11.007474813129672, "buy": 63.0, "sell": 0.0}, {"id": "45267847", "name": "45267847", "symbolSize": 10.633734156646083, "buy": 40.0, "sell": 0.0}, {"id": "41577355", "name": "41577355", "symbolSize": 10.796230094247644, "buy": 50.0, "sell": 0.0}, {"id": "38505415", "name": "38505415", "symbolSize": 10.666233344166395, "buy": 42.0, "sell": 0.0}, {"id": "35843017", "name": "35843017", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "36047799", "name": "36047799", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "33798325", "name": "33798325", "symbolSize": 10.844978875528112, "buy": 53.0, "sell": 0.0}, {"id": "37890062", "name": "37890062", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "20496669", "name": "20496669", "symbolSize": 10.64998375040624, "buy": 0.0, "sell": 41.0}, {"id": "44446604", "name": "44446604", "symbolSize": 10.844978875528112, "buy": 53.0, "sell": 0.0}, {"id": "30724353", "name": "30724353", "symbolSize": 10.796230094247644, "buy": 50.0, "sell": 0.0}, {"id": "321953", "name": "321953", "symbolSize": 11.429964250893727, "buy": 0.0, "sell": 89.0}, {"id": "44239723", "name": "44239723", "symbolSize": 10.8124796880078, "buy": 51.0, "sell": 0.0}, {"id": "1477541", "name": "1477541", "symbolSize": 11.121221969450763, "buy": 0.0, "sell": 70.0}, {"id": "4743803", "name": "4743803", "symbolSize": 10.048748781280468, "buy": 0.0, "sell": 4.0}, {"id": "39324613", "name": "39324613", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "44036985", "name": "44036985", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "32989364", "name": "32989364", "symbolSize": 10.828729281767956, "buy": 52.0, "sell": 0.0}, {"id": "44854141", "name": "44854141", "symbolSize": 10.796230094247644, "buy": 50.0, "sell": 0.0}, {"id": "31543535", "name": "31543535", "symbolSize": 10.877478063048423, "buy": 55.0, "sell": 0.0}, {"id": "34819044", "name": "34819044", "symbolSize": 10.8124796880078, "buy": 51.0, "sell": 0.0}, {"id": "3496437", "name": "3496437", "symbolSize": 10.016249593760156, "buy": 0.0, "sell": 2.0}, {"id": "47329332", "name": "47329332", "symbolSize": 10.8124796880078, "buy": 51.0, "sell": 0.0}, {"id": "33591471", "name": "33591471", "symbolSize": 10.796230094247644, "buy": 50.0, "sell": 0.0}, {"id": "1459150", "name": "1459150", "symbolSize": 10.032499187520312, "buy": 0.0, "sell": 3.0}, {"id": "49769301", "name": "49769301", "symbolSize": 10.633734156646083, "buy": 40.0, "sell": 0.0}], "edges": [{"source": "25807537", "target": "39938984", "quantity": 55.0, "price": 46620.0}, {"source": "25807537", "target": "46701415", "quantity": 54.0, "price": 46620.0}, {"source": "25807537", "target": "32770232", "quantity": 61.0, "price": 46620.0}, {"source": "25807537", "target": "35843042", "quantity": 55.0, "price": 46620.0}, {"source": "25807537", "target": "38505415", "quantity": 28.0, "price": 46620.0}, {"source": "25807537", "target": "32162000", "quantity": 69.0, "price": 46620.0}, {"source": "2664647", "target": "25807537", "quantity": 178.0, "price": 14940.0}, {"source": "25807537", "target": "33181878", "quantity": 43.0, "price": 46620.0}, {"source": "25807537", "target": "40965031", "quantity": 55.0, "price": 46620.0}, {"source": "418404", "target": "2148812", "quantity": 1.0, "price": 15390.0}, {"source": "25807537", "target": "45468486", "quantity": 54.0, "price": 46620.0}, {"source": "25807537", "target": "45263734", "quantity": 46.0, "price": 46620.0}, {"source": "25807537", "target": "31543535", "quantity": 55.0, "price": 46620.0}, {"source": "25807537", "target": "44649351", "quantity": 54.0, "price": 46620.0}, {"source": "25807537", "target": "33798325", "quantity": 51.0, "price": 46620.0}, {"source": "25807537", "target": "35023839", "quantity": 57.0, "price": 46620.0}, {"source": "25807537", "target": "48337703", "quantity": 52.0, "price": 46620.0}, {"source": "25807537", "target": "33179872", "quantity": 52.0, "price": 46620.0}, {"source": "25807537", "target": "30724353", "quantity": 50.0, "price": 46620.0}, {"source": "25807537", "target": "40758166", "quantity": 53.0, "price": 46620.0}, {"source": "2468086", "target": "44649338", "quantity": 2.0, "price": 46620.0}, {"source": "25807537", "target": "35023017", "quantity": 62.0, "price": 46620.0}, {"source": "25807537", "target": "45269877", "quantity": 55.0, "price": 46620.0}, {"source": "25807537", "target": "44446604", "quantity": 53.0, "price": 46620.0}, {"source": "25807537", "target": "35842212", "quantity": 48.0, "price": 46620.0}, {"source": "25807537", "target": "38505386", "quantity": 49.0, "price": 46620.0}, {"source": "1459150", "target": "43215748", "quantity": 3.0, "price": 46620.0}, {"source": "25807537", "target": "33392839", "quantity": 51.0, "price": 46620.0}, {"source": "25807537", "target": "32155866", "quantity": 61.0, "price": 46620.0}, {"source": "656276", "target": "25807537", "quantity": 84.0, "price": 14940.0}, {"source": "25807537", "target": "44239723", "quantity": 51.0, "price": 46620.0}, {"source": "25807537", "target": "48130916", "quantity": 55.0, "price": 46620.0}, {"source": "1729317", "target": "43215748", "quantity": 4.0, "price": 46620.0}, {"source": "12706067", "target": "39324613", "quantity": 1.0, "price": 15540.0}, {"source": "25807537", "target": "48130891", "quantity": 55.0, "price": 46620.0}, {"source": "25807537", "target": "32989364", "quantity": 52.0, "price": 46620.0}, {"source": "25807537", "target": "45265782", "quantity": 49.0, "price": 46620.0}, {"source": "8224834", "target": "1536530", "quantity": 9.0, "price": 15460.0}, {"source": "84846", "target": "38505415", "quantity": 3.0, "price": 46620.0}, {"source": "25807537", "target": "43215748", "quantity": 39.0, "price": 46620.0}, {"source": "25807537", "target": "49769301", "quantity": 40.0, "price": 46620.0}, {"source": "1477541", "target": "1536530", "quantity": 70.0, "price": 15330.0}, {"source": "25807537", "target": "42601358", "quantity": 55.0, "price": 46620.0}, {"source": "25807537", "target": "44854141", "quantity": 50.0, "price": 46620.0}, {"source": "25807537", "target": "33601715", "quantity": 50.0, "price": 46620.0}, {"source": "25807537", "target": "45472582", "quantity": 55.0, "price": 46620.0}, {"source": "25807537", "target": "50178912", "quantity": 57.0, "price": 46620.0}, {"source": "25807537", "target": "43010966", "quantity": 36.0, "price": 46620.0}, {"source": "25807537", "target": "34823130", "quantity": 55.0, "price": 46620.0}, {"source": "25807537", "target": "44036985", "quantity": 55.0, "price": 46620.0}, {"source": "25807537", "target": "36457398", "quantity": 55.0, "price": 46620.0}, {"source": "25807537", "target": "35843017", "quantity": 55.0, "price": 46620.0}, {"source": "25807537", "target": "33184727", "quantity": 50.0, "price": 46620.0}, {"source": "3496437", "target": "33798325", "quantity": 2.0, "price": 15540.0}, {"source": "25807537", "target": "33591471", "quantity": 50.0, "price": 46620.0}, {"source": "20496669", "target": "38505415", "quantity": 11.0, "price": 46620.0}, {"source": "25807537", "target": "41577355", "quantity": 50.0, "price": 46620.0}, {"source": "25807537", "target": "45267847", "quantity": 40.0, "price": 46620.0}, {"source": "25807537", "target": "34411467", "quantity": 47.0, "price": 46620.0}, {"source": "20496669", "target": "39529411", "quantity": 30.0, "price": 46620.0}, {"source": "25807537", "target": "44649338", "quantity": 42.0, "price": 46620.0}, {"source": "2697747", "target": "1536530", "quantity": 8.0, "price": 15330.0}, {"source": "25807537", "target": "47721302", "quantity": 52.0, "price": 46620.0}, {"source": "4743803", "target": "2148812", "quantity": 4.0, "price": 15390.0}, {"source": "25807537", "target": "37071793", "quantity": 49.0, "price": 46620.0}, {"source": "25807537", "target": "39324613", "quantity": 54.0, "price": 46620.0}, {"source": "25807537", "target": "39529411", "quantity": 24.0, "price": 46620.0}, {"source": "3901672", "target": "44649338", "quantity": 4.0, "price": 46620.0}, {"source": "321953", "target": "25807537", "quantity": 89.0, "price": 14940.0}, {"source": "25807537", "target": "34819044", "quantity": 51.0, "price": 46620.0}, {"source": "25807537", "target": "46902121", "quantity": 54.0, "price": 46620.0}, {"source": "25807537", "target": "47329332", "quantity": 51.0, "price": 46620.0}, {"source": "25807537", "target": "37890062", "quantity": 55.0, "price": 46620.0}, {"source": "25807537", "target": "36662208", "quantity": 55.0, "price": 46620.0}, {"source": "656276", "target": "1536530", "quantity": 1.0, "price": 15480.0}, {"source": "25807537", "target": "46908260", "quantity": 49.0, "price": 46620.0}, {"source": "418404", "target": "25807537", "quantity": 152.0, "price": 14970.0}, {"source": "25807537", "target": "33599667", "quantity": 63.0, "price": 46620.0}, {"source": "25807537", "target": "36047799", "quantity": 55.0, "price": 46620.0}]};
+
+    const option = {
+      backgroundColor: '#111',
+      title: {
+        text: 'ECharts Graph',
+        left: 'center',
+        textStyle: { color: '#fff' }
+      },
+      tooltip: {
+        formatter: function (param) {
+          if (param.dataType === 'edge') {
+            return `关系: ${param.data.source} → ${param.data.target}<br/>
+                    数量: ${param.data.quantity}<br/>
+                    单价: ${param.data.price}`;
+          }
+          return `节点: ${param.data.name}<br/>
+                  买入: ${param.data.buy}<br/>
+                  卖出: ${param.data.sell}`;
+        }
+      },
+      series: [
+        {
+          type: 'graph',
+          layout: 'force',
+          roam: true,
+          draggable: true,
+          edgeSymbol: ['none', 'arrow'],
+          edgeSymbolSize: 8,
+          data: graphData.nodes,
+          edges: graphData.edges,
+          emphasis: {
+            focus: 'adjacency',
+            label: {
+              show: true,
+              color: '#ff0',
+              fontWeight: 'bold'
+            },
+            lineStyle: {
+              color: '#ff5722',
+              width: 3,
+              opacity: 1
+            }
+          },
+          lineStyle: {
+            color: '#aaa',
+            opacity: 0.6,
+            width: 1
+          },
+          label: {
+            position: 'right',
+            color: '#fff'
+          },
+          force: {
+            repulsion: 150,
+            edgeLength: [60, 200]
+          }
+        }
+      ]
+    };
+
+    myChart.setOption(option);
+  </script>
+</body>
+</html>
